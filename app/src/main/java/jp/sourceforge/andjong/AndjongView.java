@@ -185,7 +185,7 @@ public class AndjongView extends View implements EventIf {
 	/** �v���C���[�A�N�V���� */
 	private PlayerAction m_playerAction;
 	// 设置中间一堆展示的位置
-	private static final int LEFT_OFFSET = 1000;
+	private static final int LEFT_OFFSET = 100;
 	private static final int TOP_OFFSET = 100;
 
 	/** 文字"东一局" */
@@ -195,7 +195,7 @@ public class AndjongView extends View implements EventIf {
 
 	/** 盖着的4张牌 */
 	private static final int DORAS_LEFT = 1000 + LEFT_OFFSET;
-	private static final int DORAS_TOP = 616 + TOP_OFFSET;
+	private static final int DORAS_TOP = 500 + TOP_OFFSET;
 
 	/** 扁平红色1筒 */
 	private static final int TENBOU_01000_MIN_IMAGE_LEFT = 800 + LEFT_OFFSET;
@@ -204,7 +204,7 @@ public class AndjongView extends View implements EventIf {
 	/** ���[�`�_�̐���Left */
 	private static final int REACHBOU_LEFT = TENBOU_01000_MIN_IMAGE_LEFT + 43;
 	/** ���[�`�_�̐�Top */
-	private static final int REACHBOU_TOP = TENBOU_01000_MIN_IMAGE_TOP + 5;
+	private static final int REACHBOU_TOP = TENBOU_01000_MIN_IMAGE_TOP + 500;
 
 	/** �������̃e�L�X�g�T�C�Y */
 	private static final int MINI_TEXT_SIZE = 18;
@@ -831,7 +831,7 @@ public class AndjongView extends View implements EventIf {
 	private static final int TEHAI_LEFT = 100;// 四个方向未打出麻将牌向右的偏移量
 //	private static final int TEHAI_LEFT = 2;
 //	private static final int TEHAI_TOP = 47;
-	private static final int TEHAI_TOP = 100;//打出的历史牌与未打出牌的间隔
+	private static final int TEHAI_TOP = 200;//打出的历史牌与未打出牌的间隔
 
 	private static final int KAWA_LEFT = 42;// 四个方向已经打出的历史麻将牌向右的偏移量
 //	private static final int KAWA_LEFT = 49;
@@ -853,7 +853,7 @@ public class AndjongView extends View implements EventIf {
 	/**
 	 * 右侧的麻将位置
 	 */
-	private static final int KAWA_TEHAI_AREA_KAMICHA_LEFT = 2000;
+	private static final int KAWA_TEHAI_AREA_KAMICHA_LEFT = 1800;
 	private static final int KAWA_TEHAI_AREA_KAMICHA_TOP = 0;
 //	private static final int KAWA_TEHAI_AREA_KAMICHA_LEFT = 235;
 //	private static final int KAWA_TEHAI_AREA_KAMICHA_TOP = 47;
@@ -876,9 +876,9 @@ public class AndjongView extends View implements EventIf {
 		switch (place) {
 		case PLACE_PLAYER:
 			width = 408;
-			height = 94;
+			height = 200;
 			if ((m_playerImage == null) || m_playerImage.isRecycled()) {
-				m_playerImage = Bitmap.createBitmap(1632, 376, Bitmap.Config.ARGB_4444);
+				m_playerImage = Bitmap.createBitmap(1632, 576, Bitmap.Config.ARGB_4444);
 			}
 			image = m_playerImage;
 			image.eraseColor(Color.TRANSPARENT);
