@@ -24,11 +24,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Paint.Align;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
+/**
+ * 绘制麻将视图
+ */
 public class AndjongView extends View implements EventIf {
 	private static final String TAG = "AndjongView";
 
@@ -42,16 +46,16 @@ public class AndjongView extends View implements EventIf {
 	/** �v�̃C���[�W�̍��� */
 	private int m_haiImageHeight;
 
-	/** �v�̕� */
-	private static final int HAI_WIDTH = 19;
+	/** 4个麻将底牌*/
+	private static final int HAI_WIDTH = 50;
 	/** �v�̍��� */
 	private static final int HAI_HEIGHT = 23;
 
 	private static final int TSUMO_OFFSET = 2;
-	//private static final int SELECT_OFFSET = 16;
-	private static final int SELECT_OFFSET = 16 - 4;
+	private static final int SELECT_OFFSET = 30;
+//	private static final int SELECT_OFFSET = 16-4;// 选中待打出牌的偏移量
 
-	private static final int FUURO_LEFT = 320 - 2;
+	private static final int FUURO_LEFT = 320 - 2;// 背面是红色的小麻将
 
 	/** �v�̗��̃C���[�W */
 	private Bitmap mHaiUraImage;
@@ -85,27 +89,27 @@ public class AndjongView extends View implements EventIf {
 	private Bitmap[] m_horizontalHaiRedImage;
 	private Bitmap[] m_largeHaiRedImage;
 
-	/*
-	 * print
+	/**
+	 * 指的是弹出的方框消息，比如立直
 	 */
-
 	private static final int ROUND = 5;
 	private static final int PRINT_AREA_WIDTH = 150 - 10;
 	private static final int PRINT_AREA_HEIGHT = 134 - 10;
-	private static final int PRINT_AREA_LEFT = 90 + 150 + 5;
-	private static final int PRINT_AREA_TOP = 90 + 5;
+	private static final int PRINT_AREA_LEFT = 400 + 600 + 20;
+	private static final int PRINT_AREA_TOP = 400 + 20;
 	private static final int PRINT_AREA_RIGHT = PRINT_AREA_LEFT + PRINT_AREA_WIDTH;
 	private static final int PRINT_AREA_BOTTOM = PRINT_AREA_TOP + PRINT_AREA_HEIGHT;
 	private static final int PRINT_TEXT_SIZE = 30;
 	private Paint m_printPaint;
 	private RectF m_printRect;
 
-	/** ���b�Z�[�W�G���A�̕� */
-	private static final int MESSAGE_AREA_WIDTH = 88;
-//	private static final int MESSAGE_AREA_WIDTH = 146;
-	/** ���b�Z�[�W�G���A�̍��� */
-	private static final int MESSAGE_AREA_HEIGHT = 40;
-//	private static final int MESSAGE_AREA_HEIGHT = 143;
+	/**
+	 * 提示消息框menu
+	 */
+//	private static final int MESSAGE_AREA_WIDTH = 88;
+	private static final int MESSAGE_AREA_WIDTH = 146;
+//	private static final int MESSAGE_AREA_HEIGHT = 40;
+	private static final int MESSAGE_AREA_HEIGHT = 143;
 
 	/** ���b�Z�[�W�G���A��Left */
 	private static final int MESSAGE_AREA_LEFT = 392;
@@ -114,43 +118,26 @@ public class AndjongView extends View implements EventIf {
 	private static final int MESSAGE_AREA_TOP = 280;
 //	private static final int MESSAGE_AREA_MARGIN = 20;
 //	private static final int MESSAGE_AREA_TOP = 176;
-	/** ���b�Z�[�W�G���A��Right */
 	private static final int MESSAGE_AREA_RIGHT = MESSAGE_AREA_LEFT + MESSAGE_AREA_WIDTH;
-	/** ���b�Z�[�W�G���A��Bottom */
 	private static final int MESSAGE_AREA_BOTTOM = MESSAGE_AREA_TOP + MESSAGE_AREA_HEIGHT;
-
-	/** ���b�Z�[�W�̃e�L�X�g�T�C�Y */
-	private static final int MESSAGE_TEXT_SIZE = 20;
-
-	/** ���b�Z�[�W�̘g�̊ۂ� */
-	private static final int MESSAGE_ROUND = 10;
-
-	/** ���b�Z�[�W�̃y�C���g */
+	private static final int MESSAGE_TEXT_SIZE = 40;
+	private static final int MESSAGE_ROUND = 20;
 	private Paint mMessagePaint;
-
-	/** ���b�Z�[�W�̘g */
 	private RectF mMessageRect;
 
-	/*
-	 * ���G���A
-	 */
 
-	/** ���G���A�̕� */
-	private static final int INFO_AREA_WIDTH = 300;
-	/** ���G���A�̍��� */
-	private static final int INFO_AREA_HEIGHT = 134;
-
-	/** ���G���A��Left */
-	private static final int INFO_AREA_LEFT = 90;
-	/** ���G���A��Top */
-	private static final int INFO_AREA_TOP = 90;
-	/** ���G���A��Right */
+	/**
+	 * info area 指的是中间的展示消息区域，各自的剩余资金
+	 * */
+	private static final int INFO_AREA_WIDTH = 500;
+	private static final int INFO_AREA_HEIGHT = 200;
+	private static final int INFO_AREA_LEFT = 1000 - 250;
+	private static final int INFO_AREA_TOP = 500 - 78;
 	private static final int INFO_AREA_RIGHT = INFO_AREA_LEFT + INFO_AREA_WIDTH;
-	/** ���G���A��Bottom */
 	private static final int INFO_AREA_BOTTOM = INFO_AREA_TOP + INFO_AREA_HEIGHT;
 
 	/** ���G���A�̘g�̊ۂ� */
-	private static final int INFO_ROUND = 5;
+	private static final int INFO_ROUND = 10;
 
 	/** ���G���A�̃y�C���g */
 	private Paint m_infoPaint;
@@ -158,35 +145,23 @@ public class AndjongView extends View implements EventIf {
 	/** ���G���A�̘g */
 	private RectF m_infoRect;
 
-	/*
-	 * ���j���[
+	/**
+	 * 提示框吃杠碰
 	 */
-
-	/** ���j���[�̌��̍ő�l */
 	private static final int MENU_ITEM_MAX = 4;
-
-	/** ���j���[�̕� */
 	private static final int MENU_WIDTH = 94;
 //	private static final int MENU_WIDTH = 78;
-	/** ���j���[�̍��� */
 	private static final int MENU_HEIGHT = 66;
 //	private static final int MENU_HEIGHT = 72;
 
-	/** ���j���[�G���A��top */
 	private static final int MENU_AREA_TOP = 250;
 //	private static final int MENU_AREA_TOP = 406;
-	/** ���j���[�G���A��left */
 	private static final int MENU_AREA_LEFT = 0;
-	/** ���j���[�G���A��top�̃}�[�W�� */
 	private static final int MENU_AREA_TOP_MARGIN = 2;
 //	private static final int MENU_AREA_TOP_MARGIN = 1;
-	/** ���j���[�G���A��left�̃}�[�W�� */
 	private static final int MENU_AREA_LEFT_MARGIN = 2;
 
-	/** ���j���[�̘g */
 	private RectF m_menuRect[];
-
-	/** ���j���[�̃e�L�X�g�T�C�Y */
 	private static final int MENU_TEXT_SIZE = 24;
 
 	/*
@@ -209,27 +184,22 @@ public class AndjongView extends View implements EventIf {
 
 	/** �v���C���[�A�N�V���� */
 	private PlayerAction m_playerAction;
+	// 设置中间一堆展示的位置
+	private static final int LEFT_OFFSET = 1000;
+	private static final int TOP_OFFSET = 100;
 
-	private static final int LEFT_OFFSET = 5;
-	private static final int TOP_OFFSET = 26;
+	/** 文字"东一局" */
+	private static final int KYOKU_LEFT = 1000 + LEFT_OFFSET;// 东一局
+	private static final int KYOKU_TOP = 400 + 44 + TOP_OFFSET;
+	private static final int KYOKU_TEXT_SIZE = 50;
 
-	/** �ǂ�Left */
-	private static final int KYOKU_LEFT = 160 + LEFT_OFFSET;
-	/** �ǂ�Top */
-	private static final int KYOKU_TOP = 85 + 11 + TOP_OFFSET;
+	/** 盖着的4张牌 */
+	private static final int DORAS_LEFT = 1000 + LEFT_OFFSET;
+	private static final int DORAS_TOP = 616 + TOP_OFFSET;
 
-	/** �ǂ̃e�L�X�g�T�C�Y */
-	private static final int KYOKU_TEXT_SIZE = 18;
-
-	/** �h����Left */
-	private static final int DORAS_LEFT = 112 + LEFT_OFFSET;
-	/** �h����Top */
-	private static final int DORAS_TOP = 154 + TOP_OFFSET;
-
-	/** ���[�`�_�̃C���[�W��Left */
-	private static final int TENBOU_01000_MIN_IMAGE_LEFT = 100 + LEFT_OFFSET;
-	/** ���[�`�_�̃C���[�W��Top */
-	private static final int TENBOU_01000_MIN_IMAGE_TOP = 141 + TOP_OFFSET;
+	/** 扁平红色1筒 */
+	private static final int TENBOU_01000_MIN_IMAGE_LEFT = 800 + LEFT_OFFSET;
+	private static final int TENBOU_01000_MIN_IMAGE_TOP = 450 + TOP_OFFSET;
 
 	/** ���[�`�_�̐���Left */
 	private static final int REACHBOU_LEFT = TENBOU_01000_MIN_IMAGE_LEFT + 43;
@@ -237,22 +207,21 @@ public class AndjongView extends View implements EventIf {
 	private static final int REACHBOU_TOP = TENBOU_01000_MIN_IMAGE_TOP + 5;
 
 	/** �������̃e�L�X�g�T�C�Y */
-	private static final int MINI_TEXT_SIZE = 12;
+	private static final int MINI_TEXT_SIZE = 18;
 
-	/** �_�_��Left */
-	private static final int[] TENBO_LEFT = { 160 + LEFT_OFFSET, 197 + LEFT_OFFSET, 160 + LEFT_OFFSET, 123 + LEFT_OFFSET };
-	/** �_�_��Top */
-	private static final int[] TENBO_TOP = { 135 + TOP_OFFSET, 123 + TOP_OFFSET, 111 + TOP_OFFSET, 123 + TOP_OFFSET };
+	/** 东西南北 */
+	private static final int[] TENBO_LEFT = { 1040 + LEFT_OFFSET, 1188 + LEFT_OFFSET, 1040 + LEFT_OFFSET, 892 + LEFT_OFFSET };
+	private static final int[] TENBO_TOP = { 540 + TOP_OFFSET, 492 + TOP_OFFSET, 444 + TOP_OFFSET, 492 + TOP_OFFSET };
 
 	/** �{��̃C���[�W��Left */
-	private static final int TENBOU_00100_MIN_IMAGE_LEFT = 170 + LEFT_OFFSET;
+	private static final int TENBOU_00100_MIN_IMAGE_LEFT = 680 + LEFT_OFFSET;
 	/** �{��̃C���[�W��Top */
 	private static final int TENBOU_00100_MIN_IMAGE_TOP = TENBOU_01000_MIN_IMAGE_TOP;
 
 	/** �{��̐���Left */
-	private static final int HONBA_LEFT = TENBOU_00100_MIN_IMAGE_LEFT + 43;
+	private static final int HONBA_LEFT = TENBOU_00100_MIN_IMAGE_LEFT + 172;
 	/** �{��̐�Top */
-	private static final int HONBA_TOP = TENBOU_00100_MIN_IMAGE_TOP + 5;
+	private static final int HONBA_TOP = TENBOU_00100_MIN_IMAGE_TOP + 20;
 
 	private String m_settingKyokusuu;
 
@@ -276,7 +245,7 @@ public class AndjongView extends View implements EventIf {
 	}
 
 	/**
-	 * �R���X�g���N�^
+	 * 麻将界面
 	 *
 	 * @param context
 	 *            �A�N�e�B�r�e�B
@@ -287,8 +256,8 @@ public class AndjongView extends View implements EventIf {
 		// �A�N�e�B�r�e�B��ۑ�����B
 		this.m_game = (Game) context;
 
-		// �C���[�W������������B
-		initImage(getResources());
+		// 加载麻将牌图片资源
+		initImage(getResources(),context);
 
 		// �y�C���g������������B
 		initPaint(getResources());
@@ -312,17 +281,17 @@ public class AndjongView extends View implements EventIf {
 	/**
 	 * �C���[�W������������B
 	 *
-	 * @param res
-	 *            ���\�[�X
+	 * @param res ���\�[�X
 	 */
-	private void initImage(Resources res) {
-		m_playerImage = Bitmap.createBitmap(408, 94, Bitmap.Config.ARGB_4444);
+	private void initImage(Resources res,Context context) {
+		// 下方我方区域
+		m_playerImage = Bitmap.createBitmap(1200, 500, Bitmap.Config.ARGB_4444);
 		m_kamichaImage = Bitmap.createBitmap(KAWA_TEHAI_AREA_HEIGHT, KAWA_TEHAI_AREA_WIDTH, Bitmap.Config.ARGB_4444);
 		m_toimenImage = Bitmap.createBitmap(KAWA_TEHAI_AREA_WIDTH, KAWA_TEHAI_AREA_HEIGHT, Bitmap.Config.ARGB_4444);
 		m_shimochaImage = Bitmap.createBitmap(KAWA_TEHAI_AREA_HEIGHT, KAWA_TEHAI_AREA_WIDTH, Bitmap.Config.ARGB_4444);
 
 		m_haiImage = new Bitmap[Hai.ID_MAX + 1];
-
+		// 绘制万
 		m_haiImage[0] = BitmapFactory.decodeResource(res, R.drawable.hai_00_wan_1);
 		m_haiImage[1] = BitmapFactory.decodeResource(res, R.drawable.hai_01_wan_2);
 		m_haiImage[2] = BitmapFactory.decodeResource(res, R.drawable.hai_02_wan_3);
@@ -332,7 +301,7 @@ public class AndjongView extends View implements EventIf {
 		m_haiImage[6] = BitmapFactory.decodeResource(res, R.drawable.hai_06_wan_7);
 		m_haiImage[7] = BitmapFactory.decodeResource(res, R.drawable.hai_07_wan_8);
 		m_haiImage[8] = BitmapFactory.decodeResource(res, R.drawable.hai_08_wan_9);
-
+		// 绘制饼
 		m_haiImage[9] = BitmapFactory.decodeResource(res, R.drawable.hai_09_pin_1);
 		m_haiImage[10] = BitmapFactory.decodeResource(res, R.drawable.hai_10_pin_2);
 		m_haiImage[11] = BitmapFactory.decodeResource(res, R.drawable.hai_11_pin_3);
@@ -342,7 +311,7 @@ public class AndjongView extends View implements EventIf {
 		m_haiImage[15] = BitmapFactory.decodeResource(res, R.drawable.hai_15_pin_7);
 		m_haiImage[16] = BitmapFactory.decodeResource(res, R.drawable.hai_16_pin_8);
 		m_haiImage[17] = BitmapFactory.decodeResource(res, R.drawable.hai_17_pin_9);
-
+		// 绘制条
 		m_haiImage[18] = BitmapFactory.decodeResource(res, R.drawable.hai_18_sou_1);
 		m_haiImage[19] = BitmapFactory.decodeResource(res, R.drawable.hai_19_sou_2);
 		m_haiImage[20] = BitmapFactory.decodeResource(res, R.drawable.hai_20_sou_3);
@@ -480,6 +449,7 @@ public class AndjongView extends View implements EventIf {
 	 */
 	private void initPaint(Resources res) {
 		mBackgroundPaint = new Paint();
+		// 桌面背景颜色
 		mBackgroundPaint.setColor(res.getColor(R.color.andjong_background));
 
 		mMessagePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -854,35 +824,44 @@ public class AndjongView extends View implements EventIf {
 	private static final int PLACE_TOIMEN = 2;
 	private static final int PLACE_SHIMOCHA = 3;
 
-	private static final int KAWA_TEHAI_AREA_WIDTH = 320;
-	private static final int KAWA_TEHAI_AREA_HEIGHT = 88;
+	private static final int KAWA_TEHAI_AREA_WIDTH = 900;
+	private static final int KAWA_TEHAI_AREA_HEIGHT = 400;
 //	private static final int KAWA_TEHAI_AREA_HEIGHT = 85;
 
-	private static final int TEHAI_LEFT = 4;
+	private static final int TEHAI_LEFT = 100;// 四个方向未打出麻将牌向右的偏移量
 //	private static final int TEHAI_LEFT = 2;
 //	private static final int TEHAI_TOP = 47;
-	private static final int TEHAI_TOP = 48;
+	private static final int TEHAI_TOP = 100;//打出的历史牌与未打出牌的间隔
 
-	private static final int KAWA_LEFT = 42;
+	private static final int KAWA_LEFT = 42;// 四个方向已经打出的历史麻将牌向右的偏移量
 //	private static final int KAWA_LEFT = 49;
 	private static final int KAWA_TOP = 0;
-
-	private static final int KAWA_TEHAI_AREA_PLAYER_LEFT = 42;
-	private static final int KAWA_TEHAI_AREA_PLAYER_TOP = 226;
+	/**
+	 * 下方我方麻将位置
+	 */
+	private static final int KAWA_TEHAI_AREA_PLAYER_LEFT = 600;
+	private static final int KAWA_TEHAI_AREA_PLAYER_TOP = 904;
 //	private static final int KAWA_TEHAI_AREA_PLAYER_LEFT = 0;
 //	private static final int KAWA_TEHAI_AREA_PLAYER_TOP = 321;
-
-	private static final int KAWA_TEHAI_AREA_TOIMEN_LEFT = 72;
+	/**
+	 * 上方麻将位置
+	 */
+	private static final int KAWA_TEHAI_AREA_TOIMEN_LEFT = 500;
 //	private static final int KAWA_TEHAI_AREA_TOIMEN_LEFT = 0;
 	private static final int KAWA_TEHAI_AREA_TOIMEN_TOP = 0;
 
-	private static final int KAWA_TEHAI_AREA_KAMICHA_LEFT = 392;
+	/**
+	 * 右侧的麻将位置
+	 */
+	private static final int KAWA_TEHAI_AREA_KAMICHA_LEFT = 2000;
 	private static final int KAWA_TEHAI_AREA_KAMICHA_TOP = 0;
 //	private static final int KAWA_TEHAI_AREA_KAMICHA_LEFT = 235;
 //	private static final int KAWA_TEHAI_AREA_KAMICHA_TOP = 47;
-
+	/**
+	 * 左侧麻将位置
+	 */
 	private static final int KAWA_TEHAI_AREA_SHIMOCHA_LEFT = 0;
-	private static final int KAWA_TEHAI_AREA_SHIMOCHA_TOP = 0;
+	private static final int KAWA_TEHAI_AREA_SHIMOCHA_TOP = 100;
 //	private static final int KAWA_TEHAI_AREA_SHIMOCHA_LEFT = 0;
 //	private static final int KAWA_TEHAI_AREA_SHIMOCHA_TOP = 38;
 
@@ -899,7 +878,7 @@ public class AndjongView extends View implements EventIf {
 			width = 408;
 			height = 94;
 			if ((m_playerImage == null) || m_playerImage.isRecycled()) {
-				m_playerImage = Bitmap.createBitmap(408, 94, Bitmap.Config.ARGB_4444);
+				m_playerImage = Bitmap.createBitmap(1632, 376, Bitmap.Config.ARGB_4444);
 			}
 			image = m_playerImage;
 			image.eraseColor(Color.TRANSPARENT);
@@ -1212,9 +1191,9 @@ public class AndjongView extends View implements EventIf {
 
 		drawFuuros(a_canvas, a_tehai, FUURO_LEFT + 32, top + 11);
 	}
-
-	private static final int TOUCH_TOP = 160;
-	private static final int TOUCH_BOTTOM = 320;
+	// 表示麻将触摸感应的的位置
+	private static final int TOUCH_TOP = 1000;
+	private static final int TOUCH_BOTTOM = 1100;
 //	private static final int TOUCH_TOP = 480 - 97;
 //	private static final int TOUCH_BOTTOM = 480;
 
@@ -1672,7 +1651,7 @@ public class AndjongView extends View implements EventIf {
 
 	/** �̔v�̃C���f�b�N�X */
 	private int mSutehaiIdx = 0;
-
+	@Override
 	public String getName() {
 		return mName;
 	}
@@ -1693,6 +1672,7 @@ public class AndjongView extends View implements EventIf {
 	 * @param a_eventId
 	 *            �C�x���gID
 	 */
+	@Override
 	public EventId event(EventId a_eventId, int a_kazeFrom, int a_kazeTo) {
 		m_drawItem.m_eventId = a_eventId;
 		m_drawItem.m_kazeFrom = a_kazeFrom;
@@ -1957,7 +1937,7 @@ public class AndjongView extends View implements EventIf {
 
 		return EventId.NAGASHI;
 	}
-
+    @Override
 	public int getISutehai() {
 		return mSutehaiIdx;
 	}

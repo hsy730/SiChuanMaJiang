@@ -20,18 +20,19 @@ public class Game extends Activity {
 		super.onCreate(savedInstanceState);
 		Log.d(TAG, "onCreate");
 
-		// ƒ^ƒCƒgƒ‹‚ğ•\¦‚µ‚È‚¢‚æ‚¤‚É‚·‚éB
+		// ï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½B
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚É‚·‚éB
+		// ï¿½tï¿½ï¿½ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½B
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		// View‚ğì¬‚·‚éB
+		// Viewï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ï¿½B
+		System.out.println("é«˜åº¦ï¼š"+Utils.getScreenHeight(this)+"å®½åº¦ï¼š"+Utils.getScreenWidth(this));
 		mAndjongView = new AndjongView(this);
 		setContentView(mAndjongView);
 		mAndjongView.requestFocus();
 
-		// ƒQ[ƒ€‚ğŠJn‚·‚éB
+		// ï¿½Qï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½nï¿½ï¿½ï¿½ï¿½B
 		mMahjong = new Mahjong(mAndjongView);
 		new Thread(mMahjong).start();
 	}

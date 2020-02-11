@@ -26,12 +26,15 @@ public class Andjong extends Activity implements OnClickListener {
 		case R.id.new_button:
 			startActivity(new Intent(Andjong.this, Game.class));
 			break;
+		// 关于
 		case R.id.about_button:
 			startActivity(new Intent(Andjong.this, About.class));
 			break;
+		// 设置
 		case R.id.settings_button:
 			startActivity(new Intent(Andjong.this, Settings.class));
 			break;
+		// 退出
 		case R.id.exit_button:
 			finish();
 			break;

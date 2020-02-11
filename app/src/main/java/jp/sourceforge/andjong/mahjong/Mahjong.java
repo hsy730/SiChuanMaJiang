@@ -9,7 +9,7 @@ import jp.sourceforge.andjong.mahjong.CountFormat.Combi;
 import static jp.sourceforge.andjong.mahjong.EventIf.*;
 
 /**
- * ƒQ[ƒ€‚ğŠÇ—‚·‚éƒNƒ‰ƒX‚Å‚·B
+ * ï¿½Qï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Ç—ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½Å‚ï¿½ï¿½B
  *
  * @author Yuji Urushibara
  *
@@ -20,78 +20,78 @@ public class Mahjong implements Runnable {
 	/** AndjongView */
 	private AndjongView m_view;
 
-	/** R */
+	/** ï¿½R */
 	private Yama m_yama;
 
-	/** “Œˆê‹Ç */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	public final static int KYOKU_TON_1 = 0;
-	/** “Œ“ñ‹Ç */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	public final static int KYOKU_TON_2 = 1;
-	/** “ŒO‹Ç */
+	/** ï¿½ï¿½ï¿½Oï¿½ï¿½ */
 	public final static int KYOKU_TON_3 = 2;
-	/** “Œl‹Ç */
+	/** ï¿½ï¿½ï¿½lï¿½ï¿½ */
 	public final static int KYOKU_TON_4 = 3;
-	/** “ìˆê‹Ç */
+	/** ï¿½ï¿½ï¿½ï¿½ */
 	public final static int KYOKU_NAN_1 = 4;
-	/** “ì“ñ‹Ç */
+	/** ï¿½ï¿½ï¿½ï¿½ */
 	public final static int KYOKU_NAN_2 = 5;
-	/** “ìO‹Ç */
+	/** ï¿½ï¿½Oï¿½ï¿½ */
 	public final static int KYOKU_NAN_3 = 6;
-	/** “ìl‹Ç */
+	/** ï¿½ï¿½lï¿½ï¿½ */
 	public final static int KYOKU_NAN_4 = 7;
 
-	/** ‹Ç */
+	/** ï¿½ï¿½ */
 	private int m_kyoku;
 
-	/** ‹Ç‚ÌÅ‘å’l */
+	/** ï¿½Ç‚ÌÅ‘ï¿½l */
 	private int m_kyokuEnd;
 
-	/** ƒcƒ‚”v */
+	/** ï¿½cï¿½ï¿½ï¿½v */
 	private Hai m_tsumoHai;
 
-	/** Ì”v */
+	/** ï¿½Ì”v */
 	private Hai m_suteHai;
 
-	/** ƒŠ[ƒ`–_‚Ì” */
+	/** ï¿½ï¿½ï¿½[ï¿½`ï¿½_ï¿½Ìï¿½ */
 	private int m_reachbou;
 
-	/** –{ê */
+	/** ï¿½{ï¿½ï¿½ */
 	private int m_honba;
 
-	/** ƒvƒŒƒCƒ„[‚Ìl” */
+	/** ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìlï¿½ï¿½ */
 	private int m_playerNum;
 
-	/** ƒvƒŒƒCƒ„[‚É’ñ‹Ÿ‚·‚éî•ñ */
+	/** ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½É’ñ‹Ÿ‚ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private Info m_info;
 
-	/** ƒvƒŒƒCƒ„[‚Ì”z—ñ */
+	/** ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ì”zï¿½ï¿½ */
 	private Player[] m_players;
 
-	/** •—‚ğƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX‚É•ÏŠ·‚·‚é”z—ñ */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½É•ÏŠï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ */
 	private int[] m_kazeToPlayerIdx = new int[4];
 
-	/** UI‚É’ñ‹Ÿ‚·‚éî•ñ */
+	/** UIï¿½É’ñ‹Ÿ‚ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private InfoUi m_infoUi;
 
-	/** ƒTƒCƒRƒ‚Ì”z—ñ */
+	/** ï¿½Tï¿½Cï¿½Rï¿½ï¿½ï¿½Ì”zï¿½ï¿½ */
 	private Sai[] m_sais = new Sai[] { new Sai(), new Sai() };
 
-	/** e‚ÌƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX */
+	/** ï¿½eï¿½Ìƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½X */
 	private int m_iOya;
 
-	/** ‹N‰Æ‚ÌƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX */
+	/** ï¿½Nï¿½Æ‚Ìƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½X */
 	private int m_iChiicha;
 
-	/** ˜A‘‘ */
+	/** ï¿½Aï¿½ï¿½ */
 	private boolean m_renchan;
 
-	/** ƒCƒxƒ“ƒg‚ğ”­s‚µ‚½•— */
+	/** ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ğ”­sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private int m_kazeFrom;
 
-	/** ƒCƒxƒ“ƒg‚Ì‘ÎÛ‚Æ‚È‚Á‚½•— */
+	/** ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½Ì‘ÎÛ‚Æ‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private int m_kazeTo;
 
-	/** ‚¿“_‚Ì‰Šú’l */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½Ìï¿½ï¿½ï¿½ï¿½l */
 	private static final int TENBOU_INIT = 25000;
 
 	private int m_suteHaisCount = 0;
@@ -108,7 +108,7 @@ public class Mahjong implements Runnable {
 	}
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * éº»å°†é€»è¾‘
 	 *
 	 * @param view
 	 *            View
@@ -119,36 +119,36 @@ public class Mahjong implements Runnable {
 	}
 
 	/**
-	 * R‚ğæ“¾‚·‚éB
+	 * ï¿½Rï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 *
-	 * @return R
+	 * @return ï¿½R
 	 */
 	Yama getYama() {
 		return m_yama;
 	}
 
 	/**
-	 * ‹Ç‚ğæ“¾‚·‚éB
+	 * ï¿½Ç‚ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 *
-	 * @return ‹Ç
+	 * @return ï¿½ï¿½
 	 */
 	int getkyoku() {
 		return m_kyoku;
 	}
 
 	/**
-	 * ƒcƒ‚”v‚ğæ“¾‚·‚éB
+	 * ï¿½cï¿½ï¿½ï¿½vï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 *
-	 * @return ƒcƒ‚”v
+	 * @return ï¿½cï¿½ï¿½ï¿½v
 	 */
 	Hai getTsumoHai() {
 		return m_tsumoHai;
 	}
 
 	/**
-	 * Ì”v‚ğæ“¾‚·‚éB
+	 * ï¿½Ì”vï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 *
-	 * @return Ì”v
+	 * @return ï¿½Ì”v
 	 */
 	Hai getSuteHai() {
 		return m_suteHai;
@@ -163,18 +163,18 @@ public class Mahjong implements Runnable {
 	}
 
 	/**
-	 * ‹N‰Æ‚ÌƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚éB
+	 * ï¿½Nï¿½Æ‚Ìƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 *
-	 * @return ‹N‰Æ‚ÌƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX
+	 * @return ï¿½Nï¿½Æ‚Ìƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½X
 	 */
 	public int getChiichaIdx() {
 		return m_iChiicha;
 	}
 
 	/**
-	 * ƒTƒCƒRƒ‚Ì”z—ñ‚ğæ“¾‚·‚éB
+	 * ï¿½Tï¿½Cï¿½Rï¿½ï¿½ï¿½Ì”zï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 *
-	 * @return ƒTƒCƒRƒ‚Ì”z—ñ
+	 * @return ï¿½Tï¿½Cï¿½Rï¿½ï¿½ï¿½Ì”zï¿½ï¿½
 	 */
 	Sai[] getSais() {
 		return m_sais;
@@ -197,27 +197,27 @@ public class Mahjong implements Runnable {
 	}
 
 	/*
-	 * ‹¤’Ê’è‹`
+	 * ï¿½ï¿½ï¿½Ê’ï¿½`
 	 */
 
-	/** –Êq‚Ì\¬”v‚Ì”(3ŒÂ) */
+	/** ï¿½Êqï¿½Ì\ï¿½ï¿½ï¿½vï¿½Ìï¿½(3ï¿½ï¿½) */
 	public static final int MENTSU_HAI_MEMBERS_3 = 3;
-	/** –Êq‚Ì\¬”v‚Ì”(4ŒÂ) */
+	/** ï¿½Êqï¿½Ì\ï¿½ï¿½ï¿½vï¿½Ìï¿½(4ï¿½ï¿½) */
 	public static final int MENTSU_HAI_MEMBERS_4 = 4;
 
-	/** ‘¼‰Æ‚Æ‚ÌŠÖŒW ©•ª */
+	/** ï¿½ï¿½ï¿½Æ‚Æ‚ÌŠÖŒW ï¿½ï¿½ï¿½ï¿½ */
 	public static final int RELATION_JIBUN = 0;
-	/** ‘¼‰Æ‚Æ‚ÌŠÖŒW ã‰Æ */
+	/** ï¿½ï¿½ï¿½Æ‚Æ‚ÌŠÖŒW ï¿½ï¿½ï¿½ */
 	public static final int RELATION_KAMICHA = 1;
-	/** ‘¼‰Æ‚Æ‚ÌŠÖŒW ‘Î–Ê */
+	/** ï¿½ï¿½ï¿½Æ‚Æ‚ÌŠÖŒW ï¿½Î–ï¿½ */
 	public static final int RELATION_TOIMEN = 2;
-	/** ‘¼‰Æ‚Æ‚ÌŠÖŒW ‰º‰Æ */
+	/** ï¿½ï¿½ï¿½Æ‚Æ‚ÌŠÖŒW ï¿½ï¿½ï¿½ï¿½ */
 	public static final int RELATION_SHIMOCHA = 3;
 
-	/** Š„‚ê–Ú */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	//private int mWareme;
 
-	/** ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[ */
+	/** ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ */
 	private Player activePlayer;
 
 	private PlayerAction m_playerAction = new PlayerAction();
@@ -227,85 +227,85 @@ public class Mahjong implements Runnable {
 	}
 
 	/**
-	 * ƒQ[ƒ€‚ğŠJn‚·‚éB
+	 * ï¿½Qï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½nï¿½ï¿½ï¿½ï¿½B
 	 */
 	public void play() {
-		// ‰Šú‰»‚·‚éB
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		initialize();
 
-		// e‚ğŒˆ‚ß‚éB
+		// ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½B
 		m_sais[0].saifuri();
 		m_sais[1].saifuri();
 		m_iOya = (m_sais[0].getNo() + m_sais[1].getNo() - 1) % 4;
 		m_iChiicha = m_iOya;
 
-		// ƒCƒxƒ“ƒgieŒˆ‚ßj‚ğ”­s‚·‚éB
+		// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½eï¿½ï¿½ï¿½ßjï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 		//m_view.event(EventId.OYAGIME, KAZE_NONE, KAZE_NONE);
 		m_view.event(EventId.START_GAME, KAZE_NONE, KAZE_NONE);
 
-		// ‹Ç‚ğŒJ‚è•Ô‚µ‚ÄAƒQ[ƒ€‚ğis‚·‚éB
+		// ï¿½Ç‚ï¿½ï¿½Jï¿½ï¿½Ô‚ï¿½ï¿½ÄAï¿½Qï¿½[ï¿½ï¿½ï¿½ï¿½iï¿½sï¿½ï¿½ï¿½ï¿½B
 		while (m_kyoku <= m_kyokuEnd) {
-			// ‹Ç‚ğŠJn‚·‚éB
+			// ï¿½Ç‚ï¿½ï¿½Jï¿½nï¿½ï¿½ï¿½ï¿½B
 			startKyoku();
 
-			// ˜A‘‘‚Ìê‡A‹Ç‚ği‚ß‚È‚¢B
+			// ï¿½Aï¿½ï¿½ï¿½Ìê‡ï¿½Aï¿½Ç‚ï¿½iï¿½ß‚È‚ï¿½ï¿½B
 			if (m_renchan) {
-				// ƒCƒxƒ“ƒgi˜A‘‘j‚ğ”­s‚·‚éB
+				// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½Aï¿½ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 				//m_view.event(EventId.RENCHAN, KAZE_NONE, KAZE_NONE);
 				continue;
 			}
 
-			// ‹Ç‚ği‚ß‚éB
+			// ï¿½Ç‚ï¿½iï¿½ß‚ï¿½B
 			m_kyoku++;
 		}
 
-		// ƒCƒxƒ“ƒgiƒQ[ƒ€‚ÌI—¹j‚ğ”­s‚·‚éB
+		// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½Qï¿½[ï¿½ï¿½ï¿½ÌIï¿½ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 		m_view.event(EventId.END_GAME, KAZE_NONE, KAZE_NONE);
 	}
 
 	/**
-	 * ‰Šú‰»‚·‚éB
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 	 */
 	private void initialize() {
-		// R‚ğì¬‚·‚éB
+		// ï¿½Rï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ï¿½B
 		m_yama = new Yama();
 
-		// Ôƒhƒ‰‚ğİ’è‚·‚éB
+		// ï¿½Ôƒhï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 		if (m_view.isAkaDora()) {
 			m_yama.setRedDora(Hai.ID_PIN_5, 2);
 			m_yama.setRedDora(Hai.ID_WAN_5, 1);
 			m_yama.setRedDora(Hai.ID_SOU_5, 1);
 		}
 
-		// ‹Ç‚ğ‰Šú‰»‚·‚éB
+		// ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		m_kyoku = KYOKU_TON_1;
 		//m_kyoku = KYOKU_TON_4;
 
-		// ‹Ç‚ÌI—¹‚ğİ’è‚·‚éB
+		// ï¿½Ç‚ÌIï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 		//m_kyokuEnd = KYOKU_NAN_4;
 		m_kyokuEnd = m_view.getKyokusuu();
 
-		// ƒcƒ‚”v‚ğì¬‚·‚éB
+		// ï¿½cï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ï¿½B
 		m_tsumoHai = new Hai();
 
-		// Ì”v‚ğì¬‚·‚éB
+		// ï¿½Ì”vï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ï¿½B
 		m_suteHai = new Hai();
 
 		m_suteHaisCount = 0;
 
-		// ƒŠ[ƒ`–_‚Ì”‚ğ‰Šú‰»‚·‚éB
+		// ï¿½ï¿½ï¿½[ï¿½`ï¿½_ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		m_reachbou = 0;
 
-		// –{ê‚ğ‰Šú‰»‚·‚éB
+		// ï¿½{ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		m_honba = 0;
 
-		// ƒvƒŒƒCƒ„[‚Ìl”‚ğİ’è‚·‚éB
+		// ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìlï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 		m_playerNum = 4;
 
-		// ƒvƒŒƒCƒ„[‚É’ñ‹Ÿ‚·‚éî•ñ‚ğì¬‚·‚éB
+		// ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½É’ñ‹Ÿ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ï¿½B
 		m_info = new Info(this);
 
-		// ƒvƒŒƒCƒ„[‚Ì”z—ñ‚ğ‰Šú‰»‚·‚éB
+		// ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ì”zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		m_players = new Player[m_playerNum];
 		m_players[0] = new Player((EventIf) new Man(m_info, "A", m_playerAction));
 		m_players[1] = new Player((EventIf) new AI(m_info, "B"));
@@ -316,13 +316,13 @@ public class Mahjong implements Runnable {
 			m_players[i].setTenbou(TENBOU_INIT);
 		}
 
-		// •—‚ğƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX‚É•ÏŠ·‚·‚é”z—ñ‚ğ‰Šú‰»‚·‚éB
+		// ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½É•ÏŠï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		m_kazeToPlayerIdx = new int[m_players.length];
 
-		// UI‚É’ñ‹Ÿ‚·‚éî•ñ‚ğì¬‚·‚éB
+		// UIï¿½É’ñ‹Ÿ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ï¿½B
 		m_infoUi = new InfoUi(this, m_playerAction);
 
-		// UI‚ğ‰Šú‰»‚·‚éB
+		// UIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		m_view.initUi(m_infoUi, "AndjongView");
 	}
 
@@ -333,10 +333,10 @@ public class Mahjong implements Runnable {
 	}
 
 	/**
-	 * ‹Ç‚ğŠJn‚·‚éB
+	 * ï¿½Ç‚ï¿½ï¿½Jï¿½nï¿½ï¿½ï¿½ï¿½B
 	 */
 	private void startKyoku() {
-		// ˜A‘‘‚ğ‰Šú‰»‚·‚éB
+		// ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		m_renchan = false;
 
 		m_isTenhou = true;
@@ -345,39 +345,39 @@ public class Mahjong implements Runnable {
 		m_isRinshan = false;
 		m_isLast = false;
 
-		// ƒvƒŒƒCƒ„[‚Ì©•—‚ğİ’è‚·‚éB
+		// ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 		setJikaze();
 
-		// ƒCƒxƒ“ƒg‚ğ”­s‚µ‚½•—‚ğ‰Šú‰»‚·‚éB
+		// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ğ”­sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		m_kazeFrom = m_players[m_iOya].getJikaze();
 
-		// ƒCƒxƒ“ƒg‚Ì‘ÎÛ‚Æ‚È‚Á‚½•—‚ğ‰Šú‰»‚·‚éB
+		// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½Ì‘ÎÛ‚Æ‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		m_kazeTo = m_players[m_iOya].getJikaze();
 
-		// ƒvƒŒƒCƒ„[”z—ñ‚ğ‰Šú‰»‚·‚éB
+		// ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		for (int i = 0; i < m_players.length; i++) {
 			m_players[i].init();
 		}
 
 		m_suteHaisCount = 0;
 
-		// ô”v‚·‚éB
+		// ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½B
 		m_yama.xipai();
 
-		// ƒTƒCU‚è‚ğ‚·‚éB
+		// ï¿½Tï¿½Cï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		m_sais[0].saifuri();
 		m_sais[1].saifuri();
 
-		// UIƒCƒxƒ“ƒgiƒTƒCU‚èj‚ğ”­s‚·‚éB
+		// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½Tï¿½Cï¿½Uï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 		//m_view.event(EventId.SAIFURI, mFromKaze, mToKaze);
 
-		// R‚ÉŠ„‚ê–Ú‚ğİ’è‚·‚éB
+		// ï¿½Rï¿½ÉŠï¿½ï¿½ï¿½Ú‚ï¿½İ’è‚·ï¿½ï¿½B
 		setWareme(m_sais);
 
-		// ”z”v‚·‚éB
+		// ï¿½zï¿½vï¿½ï¿½ï¿½ï¿½B
 		haipai();
 
-		// UIƒCƒxƒ“ƒgi”z”vj‚ğ”­s‚·‚éB
+		// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½zï¿½vï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 		//m_view.event(EventId.HAIPAI, mFromKaze, mToKaze);
 		m_view.event(EventId.START_KYOKU, m_kazeFrom, m_kazeTo);
 
@@ -386,17 +386,17 @@ public class Mahjong implements Runnable {
 		int tsumoNokori;
 		int score;
 		int iPlayer;
-		// ‹Ç‚ğis‚·‚éB
+		// ï¿½Ç‚ï¿½iï¿½sï¿½ï¿½ï¿½ï¿½B
 		KYOKU_MAIN: while (true) {
-			// UIƒCƒxƒ“ƒgiis‘Ò‚¿j‚ğ”­s‚·‚éB
+			// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½iï¿½sï¿½Ò‚ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 			m_view.event(EventId.UI_WAIT_PROGRESS, KAZE_NONE, KAZE_NONE);
 
-			// ƒcƒ‚”v‚ğæ“¾‚·‚éB
+			// ï¿½cï¿½ï¿½ï¿½vï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 			m_tsumoHai = m_yama.tsumo();
 
-			// ƒcƒ‚”v‚ª‚È‚¢ê‡A—¬‹Ç‚·‚éB
+			// ï¿½cï¿½ï¿½ï¿½vï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½Aï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½B
 			if (m_tsumoHai == null) {
-				// —¬‚µ–ŠÑ‚ÌŠm”F‚ğ‚·‚éB
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ‚ÌŠmï¿½Fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 				for (int i = 0, j = m_iOya; i < m_players.length; i++, j++) {
 					if (j >= m_players.length) {
 						j = 0;
@@ -441,16 +441,16 @@ public class Mahjong implements Runnable {
 						activePlayer.increaseTenbou(score);
 						m_agariInfo.m_agariScore = score - (m_honba * 300);
 
-						// “_”‚ğ´Z‚·‚éB
+						// ï¿½_ï¿½ï¿½ï¿½ğ´Zï¿½ï¿½ï¿½ï¿½B
 						activePlayer.increaseTenbou(m_reachbou * 1000);
 
-						// ƒŠ[ƒ`–_‚Ì”‚ğ‰Šú‰»‚·‚éB
+						// ï¿½ï¿½ï¿½[ï¿½`ï¿½_ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 						m_reachbou = 0;
 
-						// UIƒCƒxƒ“ƒgiƒcƒ‚‚ ‚ª‚èj‚ğ”­s‚·‚éB
+						// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 						m_view.event(EventId.TSUMO_AGARI, m_kazeFrom, m_kazeTo);
 
-						// e‚ğXV‚·‚éB
+						// ï¿½eï¿½ï¿½ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½B
 						if (m_iOya != m_kazeToPlayerIdx[m_kazeFrom]) {
 							m_iOya++;
 							if (m_iOya >= m_players.length) {
@@ -466,7 +466,7 @@ public class Mahjong implements Runnable {
 					}
 				}
 
-				// ƒeƒ“ƒpƒC‚ÌŠm”F‚ğ‚·‚éB
+				// ï¿½eï¿½ï¿½ï¿½pï¿½Cï¿½ÌŠmï¿½Fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 				int tenpaiCount = 0;
 				for (int i = 0; i < m_tenpai.length; i++) {
 					iPlayer = m_kazeToPlayerIdx[i];
@@ -501,21 +501,21 @@ public class Mahjong implements Runnable {
 					}
 				}
 
-				// UIƒCƒxƒ“ƒgi—¬‹Çj‚ğ”­s‚·‚éB
+				// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½ï¿½ï¿½Çjï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 				m_view.event(EventId.RYUUKYOKU, KAZE_NONE, KAZE_NONE);
 
-				// ƒtƒ‰ƒO‚ğ—‚Æ‚µ‚Ä‚¨‚­B
+				// ï¿½tï¿½ï¿½ï¿½Oï¿½ğ—‚Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½B
 				for (int i = 0; i < m_tenpai.length; i++) {
 					m_tenpai[i] = false;
 				}
 
-				// e‚ğXV‚·‚éBã‚ª‚è˜A‘‘‚Æ‚·‚éB
+				// ï¿½eï¿½ï¿½ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½Bï¿½ã‚ªï¿½ï¿½Aï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½B
 				m_iOya++;
 				if (m_iOya >= m_players.length) {
 					m_iOya = 0;
 				}
 
-				// –{ê‚ğ‘‚â‚·B
+				// ï¿½{ï¿½ï¿½ğ‘‚â‚·ï¿½B
 				m_honba++;
 
 				break KYOKU_MAIN;
@@ -529,12 +529,12 @@ public class Mahjong implements Runnable {
 			}
 			//Log.i(TAG, "nokori = " + tsumoNokori + ", isChiihou = " + m_isChiihou);
 
-			// ƒCƒxƒ“ƒgiƒcƒ‚j‚ğ”­s‚·‚éB
+			// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½cï¿½ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 			retEid = tsumoEvent();
 
-			// ƒCƒxƒ“ƒg‚ğˆ—‚·‚éB
+			// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 			switch (retEid) {
-			case TSUMO_AGARI:// ƒcƒ‚‚ ‚ª‚è
+			case TSUMO_AGARI:// ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				if (activePlayer.isReach()) {
 					m_setting.setDoraHais(m_yama.getAllDoraHais());
 				}
@@ -564,16 +564,16 @@ public class Mahjong implements Runnable {
 				activePlayer.increaseTenbou(score);
 				m_agariInfo.m_agariScore = score - (m_honba * 300);
 
-				// “_”‚ğ´Z‚·‚éB
+				// ï¿½_ï¿½ï¿½ï¿½ğ´Zï¿½ï¿½ï¿½ï¿½B
 				activePlayer.increaseTenbou(m_reachbou * 1000);
 
-				// ƒŠ[ƒ`–_‚Ì”‚ğ‰Šú‰»‚·‚éB
+				// ï¿½ï¿½ï¿½[ï¿½`ï¿½_ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 				m_reachbou = 0;
 
-				// UIƒCƒxƒ“ƒgiƒcƒ‚‚ ‚ª‚èj‚ğ”­s‚·‚éB
+				// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 				m_view.event(retEid, m_kazeFrom, m_kazeTo);
 
-				// e‚ğXV‚·‚éB
+				// ï¿½eï¿½ï¿½ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½B
 				if (m_iOya != m_kazeToPlayerIdx[m_kazeFrom]) {
 					m_iOya++;
 					if (m_iOya >= m_players.length) {
@@ -586,7 +586,7 @@ public class Mahjong implements Runnable {
 				}
 
 				break KYOKU_MAIN;
-			case RON_AGARI:// ƒƒ“
+			case RON_AGARI:// ï¿½ï¿½ï¿½ï¿½
 				if (activePlayer.isReach()) {
 					m_setting.setDoraHais(m_yama.getAllDoraHais());
 				}
@@ -604,16 +604,16 @@ public class Mahjong implements Runnable {
 
 				m_agariInfo.m_agariScore = score - (m_honba * 300);
 
-				// “_”‚ğ´Z‚·‚éB
+				// ï¿½_ï¿½ï¿½ï¿½ğ´Zï¿½ï¿½ï¿½ï¿½B
 				activePlayer.increaseTenbou(m_reachbou * 1000);
 
-				// ƒŠ[ƒ`–_‚Ì”‚ğ‰Šú‰»‚·‚éB
+				// ï¿½ï¿½ï¿½[ï¿½`ï¿½_ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 				m_reachbou = 0;
 
-				// UIƒCƒxƒ“ƒgiƒƒ“j‚ğ”­s‚·‚éB
+				// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 				m_view.event(retEid, m_kazeFrom, m_kazeTo);
 
-				// e‚ğXV‚·‚éB
+				// ï¿½eï¿½ï¿½ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½B
 				if (m_iOya != m_kazeToPlayerIdx[m_kazeFrom]) {
 					m_iOya++;
 					if (m_iOya >= m_players.length) {
@@ -630,7 +630,7 @@ public class Mahjong implements Runnable {
 				break;
 			}
 
-			// ƒCƒxƒ“ƒg‚ğ”­s‚µ‚½•—‚ğXV‚·‚éB
+			// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ğ”­sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½B
 			m_kazeFrom++;
 			if (m_kazeFrom >= m_players.length) {
 				m_kazeFrom = 0;
@@ -639,7 +639,7 @@ public class Mahjong implements Runnable {
 	}
 
 	/**
-	 * ƒvƒŒƒCƒ„[‚Ì©•—‚ğİ’è‚·‚éB
+	 * ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 	 */
 	private void setJikaze() {
 		for (int i = 0, j = m_iOya; i < m_players.length; i++, j++) {
@@ -647,19 +647,19 @@ public class Mahjong implements Runnable {
 				j = 0;
 			}
 
-			// ƒvƒŒƒCƒ„[‚Ì©•—‚ğİ’è‚·‚éB
+			// ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 			m_players[j].setJikaze(i);
 
-			// •—‚ğƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX‚É•ÏŠ·‚·‚é”z—ñ‚ğİ’è‚·‚éB
+			// ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½É•ÏŠï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 			m_kazeToPlayerIdx[i] = j;
 		}
 	}
 
 	/**
-	 * R‚ÉŠ„‚ê–Ú‚ğİ’è‚·‚éB
+	 * ï¿½Rï¿½ÉŠï¿½ï¿½ï¿½Ú‚ï¿½İ’è‚·ï¿½ï¿½B
 	 *
 	 * @param sais
-	 *            ƒTƒCƒRƒ‚Ì”z—ñ
+	 *            ï¿½Tï¿½Cï¿½Rï¿½ï¿½ï¿½Ì”zï¿½ï¿½
 	 */
 	void setWareme(Sai[] sais) {
 		int sum = sais[0].getNo() + sais[1].getNo() - 1;
@@ -672,7 +672,7 @@ public class Mahjong implements Runnable {
 	}
 
 	/**
-	 * ”z”v‚·‚éB
+	 * ï¿½zï¿½vï¿½ï¿½ï¿½ï¿½B
 	 */
 	private void haipai() {
 		for (int i = 0, j = m_iOya, max = m_players.length * 13; i < max; i++, j++) {
@@ -719,11 +719,11 @@ public class Mahjong implements Runnable {
 			//int haiIds[] = {0, 0, 0, 9, 9, 9, 18, 18, 18, 5, 6, 7, 27, 27};
 			//int haiIds[] = {0, 0, 0, 2, 2, 2, 3, 3, 3, 5, 6, 7, 27, 27};
 			//int haiIds[] = {0, 0, 0, 2, 2, 2, 3, 3, 3, 4, 4, 4, 10, 10};
-			//int haiIds[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9, 10, 10}; // ƒCƒbƒc[
+			//int haiIds[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9, 10, 10}; // ï¿½Cï¿½bï¿½cï¿½[
 			//int haiIds[] = {0, 1, 2, 9, 10, 11, 18, 19, 20, 33, 33, 33, 27, 27};
-			//int haiIds[] = {1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4}; // ƒŠ[ƒ`ƒ^ƒ“ƒsƒ“ƒC[ƒy[ƒR[
-			//int haiIds[] = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7}; // ƒŠ[ƒ`ƒ^ƒ“ƒsƒ“ƒC[ƒy[ƒR[
-			//int haiIds[] = {1, 1, 2, 2, 3, 3, 4, 5, 6, 10, 10, 10, 11, 12}; // ƒŠ[ƒ`ƒ^ƒ“ƒsƒ“ƒC[ƒy[ƒR[
+			//int haiIds[] = {1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4}; // ï¿½ï¿½ï¿½[ï¿½`ï¿½^ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Cï¿½[ï¿½yï¿½[ï¿½Rï¿½[
+			//int haiIds[] = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7}; // ï¿½ï¿½ï¿½[ï¿½`ï¿½^ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Cï¿½[ï¿½yï¿½[ï¿½Rï¿½[
+			//int haiIds[] = {1, 1, 2, 2, 3, 3, 4, 5, 6, 10, 10, 10, 11, 12}; // ï¿½ï¿½ï¿½[ï¿½`ï¿½^ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Cï¿½[ï¿½yï¿½[ï¿½Rï¿½[
 			for (int i = 0; i < haiIds.length - 1; i++) {
 				m_players[iPlayer].getTehai().addJyunTehai(new Hai(haiIds[i]));
 			}
@@ -743,21 +743,21 @@ public class Mahjong implements Runnable {
 	boolean m_isLast = false;
 
 	/**
-	 * ƒCƒxƒ“ƒgiƒcƒ‚j‚ğ”­s‚·‚éB
+	 * ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½cï¿½ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 	 *
-	 * @return ƒCƒxƒ“ƒgID
+	 * @return ï¿½Cï¿½xï¿½ï¿½ï¿½gID
 	 */
 	private EventId tsumoEvent() {
-		// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+		// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 		activePlayer = m_players[m_kazeToPlayerIdx[m_kazeFrom]];
 
 		m_isTsumo = true;
 
 		//m_tsumoHai = new Hai(13, true);
-		// UIƒCƒxƒ“ƒgiƒcƒ‚j‚ğ”­s‚·‚éB
+		// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½cï¿½ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 		m_view.event(EventId.TSUMO, m_kazeFrom, m_kazeFrom);
 
-		// ƒCƒxƒ“ƒgiƒcƒ‚j‚ğ”­s‚·‚éB
+		// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½cï¿½ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 		EventId retEid = activePlayer.getEventIf().event(EventId.TSUMO, m_kazeFrom, m_kazeFrom);
 		Log.i(TAG, retEid.toString() + ", kazeFrom = " + m_kazeFrom + ", kazeTo = " + m_kazeTo);
 
@@ -765,7 +765,7 @@ public class Mahjong implements Runnable {
 
 		m_isTsumo = false;
 
-		// UIƒCƒxƒ“ƒgiis‘Ò‚¿j‚ğ”­s‚·‚éB
+		// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½iï¿½sï¿½Ò‚ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 		m_view.event(EventId.UI_WAIT_PROGRESS, m_kazeFrom, m_kazeFrom);
 
 		int sutehaiIdx;
@@ -775,7 +775,7 @@ public class Mahjong implements Runnable {
 			activePlayer.setIppatsu(false);
 		}
 
-		// ƒCƒxƒ“ƒg‚ğˆ—‚·‚éB
+		// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 		switch (retEid) {
 		case ANKAN:
 			m_isChiihou = false;
@@ -785,34 +785,34 @@ public class Mahjong implements Runnable {
 			kanHais = m_playerAction.getKanHais();
 			activePlayer.getTehai().setAnKan(kanHais[sutehaiIdx], getRelation(this.m_kazeFrom, this.m_kazeTo));
 
-			// ƒCƒxƒ“ƒg‚ğ’Ê’m‚·‚éB
+			// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½Ê’mï¿½ï¿½ï¿½ï¿½B
 			retEid = notifyEvent(EventId.ANKAN, m_kazeFrom, m_kazeFrom);
 
-			// UIƒCƒxƒ“ƒgiis‘Ò‚¿j‚ğ”­s‚·‚éB
+			// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½iï¿½sï¿½Ò‚ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 			m_view.event(EventId.UI_WAIT_PROGRESS, KAZE_NONE, KAZE_NONE);
 
-			// ƒcƒ‚”v‚ğæ“¾‚·‚éB
+			// ï¿½cï¿½ï¿½ï¿½vï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 			m_tsumoHai = m_yama.rinshanTsumo();
 
-			// ƒCƒxƒ“ƒgiƒcƒ‚j‚ğ”­s‚·‚éB
+			// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½cï¿½ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 			m_isRinshan = true;
 			retEid = tsumoEvent();
 			m_isRinshan = false;
 			break;
-		case TSUMO_AGARI:// ƒcƒ‚‚ ‚ª‚è
+		case TSUMO_AGARI:// ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			break;
-		case SUTEHAI:// Ì”v
-			// Ì”v‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚éB
+		case SUTEHAI:// ï¿½Ì”v
+			// ï¿½Ì”vï¿½ÌƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 			sutehaiIdx = activePlayer.getEventIf().getISutehai();
 
-			// —”v‚ÌŠÔ‚ğ‚Æ‚éB
+			// ï¿½ï¿½ï¿½vï¿½ÌŠÔ‚ï¿½ï¿½Æ‚ï¿½B
 			m_infoUi.setSutehaiIdx(sutehaiIdx);
 			m_view.event(EventId.UI_WAIT_RIHAI, m_kazeFrom, m_kazeFrom);
 
-			if (sutehaiIdx >= activePlayer.getTehai().getJyunTehaiLength()) {// ƒcƒ‚Ø‚è
+			if (sutehaiIdx >= activePlayer.getTehai().getJyunTehaiLength()) {// ï¿½cï¿½ï¿½ï¿½Ø‚ï¿½
 				Hai.copy(m_suteHai, m_tsumoHai);
 				activePlayer.getKawa().add(m_suteHai);
-			} else {// èo‚µ
+			} else {// ï¿½ï¿½oï¿½ï¿½
 				activePlayer.getTehai().copyJyunTehaiIndex(m_suteHai, sutehaiIdx);
 				activePlayer.getTehai().rmJyunTehai(sutehaiIdx);
 				activePlayer.getTehai().addJyunTehai(m_tsumoHai);
@@ -825,11 +825,11 @@ public class Mahjong implements Runnable {
 				activePlayer.setSuteHaisCount(m_suteHaisCount);
 			}
 
-			// ƒCƒxƒ“ƒg‚ğ’Ê’m‚·‚éB
+			// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½Ê’mï¿½ï¿½ï¿½ï¿½B
 			retEid = notifyEvent(EventId.SUTEHAI, m_kazeFrom, m_kazeFrom);
 			break;
 		case REACH:
-			// Ì”v‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚éB
+			// ï¿½Ì”vï¿½ÌƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 			sutehaiIdx = activePlayer.getEventIf().getISutehai();
 			activePlayer.setReach(true);
 			if (m_isChiihou) {
@@ -838,11 +838,11 @@ public class Mahjong implements Runnable {
 			activePlayer.setSuteHaisCount(m_suteHaisCount);
 			m_view.event(EventId.UI_WAIT_RIHAI, m_kazeFrom, m_kazeFrom);
 
-			if (sutehaiIdx >= activePlayer.getTehai().getJyunTehaiLength()) {// ƒcƒ‚Ø‚è
+			if (sutehaiIdx >= activePlayer.getTehai().getJyunTehaiLength()) {// ï¿½cï¿½ï¿½ï¿½Ø‚ï¿½
 				Hai.copy(m_suteHai, m_tsumoHai);
 				activePlayer.getKawa().add(m_suteHai);
 				activePlayer.getKawa().setReach(true);
-			} else {// èo‚µ
+			} else {// ï¿½ï¿½oï¿½ï¿½
 				activePlayer.getTehai().copyJyunTehaiIndex(m_suteHai, sutehaiIdx);
 				activePlayer.getTehai().rmJyunTehai(sutehaiIdx);
 				activePlayer.getTehai().addJyunTehai(m_tsumoHai);
@@ -858,7 +858,7 @@ public class Mahjong implements Runnable {
 
 			activePlayer.setIppatsu(true);
 
-			// ƒCƒxƒ“ƒg‚ğ’Ê’m‚·‚éB
+			// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½Ê’mï¿½ï¿½ï¿½ï¿½B
 			retEid = notifyEvent(EventId.REACH, m_kazeFrom, m_kazeFrom);
 			break;
 		default:
@@ -869,18 +869,18 @@ public class Mahjong implements Runnable {
 	}
 
 	/**
-	 * ƒCƒxƒ“ƒg‚ğ’Ê’m‚·‚éB
+	 * ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½Ê’mï¿½ï¿½ï¿½ï¿½B
 	 *
 	 * @param a_eventId
-	 *            ƒCƒxƒ“ƒgID
+	 *            ï¿½Cï¿½xï¿½ï¿½ï¿½gID
 	 * @param a_kazeFrom
-	 *            ƒCƒxƒ“ƒg‚ğ”­s‚µ‚½•—
+	 *            ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ğ”­sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param a_kazeTo
-	 *            ƒCƒxƒ“ƒg‚Ì‘ÎÛ‚Æ‚È‚Á‚½•—
-	 * @return ƒCƒxƒ“ƒgID
+	 *            ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½Ì‘ÎÛ‚Æ‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½Cï¿½xï¿½ï¿½ï¿½gID
 	 */
 	private EventId notifyEvent(EventId a_eventId, int a_kazeFrom, int a_kazeTo) {
-		// UIƒCƒxƒ“ƒg‚ğ”­s‚·‚éB
+		// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 		m_view.event(a_eventId, a_kazeFrom, a_kazeTo);
 
 		EventId ret = EventId.NAGASHI;
@@ -899,12 +899,12 @@ public class Mahjong implements Runnable {
 					j = 0;
 				}
 
-				// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+				// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 				activePlayer = m_players[m_kazeToPlayerIdx[j]];
 
 				ret = activePlayer.getEventIf().event(EventId.RON_CHECK, a_kazeFrom, j);
 				if (ret == EventId.RON_AGARI) {
-					// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+					// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 					this.m_kazeFrom = j;
 					this.m_kazeTo = a_kazeFrom;
 					activePlayer = m_players[m_kazeToPlayerIdx[this.m_kazeFrom]];
@@ -914,16 +914,16 @@ public class Mahjong implements Runnable {
 			break;
 		}
 
-		// ŠeƒvƒŒƒCƒ„[‚ÉƒCƒxƒ“ƒg‚ğ’Ê’m‚·‚éB
+		// ï¿½eï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÉƒCï¿½xï¿½ï¿½ï¿½gï¿½ï¿½Ê’mï¿½ï¿½ï¿½ï¿½B
 		NOTIFYLOOP: for (int i = 0, j = a_kazeFrom; i < m_players.length; i++, j++) {
 			if (j >= m_players.length) {
 				j = 0;
 			}
 
-			// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+			// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 			activePlayer = m_players[m_kazeToPlayerIdx[j]];
 
-			// ƒCƒxƒ“ƒg‚ğ”­s‚·‚éB
+			// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 			a_kazeTo = j;
 			ret = activePlayer.getEventIf().event(a_eventId, a_kazeFrom, a_kazeTo);
 
@@ -933,16 +933,16 @@ public class Mahjong implements Runnable {
 				}
 			}
 
-			// ƒCƒxƒ“ƒg‚ğˆ—‚·‚éB
+			// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 			switch (ret) {
-			case TSUMO_AGARI:// ƒcƒ‚‚ ‚ª‚è
-				// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+			case TSUMO_AGARI:// ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 				this.m_kazeFrom = j;
 				this.m_kazeTo = a_kazeTo;
 				activePlayer = m_players[m_kazeToPlayerIdx[this.m_kazeFrom]];
 				break NOTIFYLOOP;
-			case RON_AGARI:// ƒƒ“
-				// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+			case RON_AGARI:// ï¿½ï¿½ï¿½ï¿½
+				// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 				this.m_kazeFrom = a_kazeTo;
 				this.m_kazeTo = a_kazeFrom;
 //				this.m_kazeFrom = j;
@@ -951,7 +951,7 @@ public class Mahjong implements Runnable {
 				break NOTIFYLOOP;
 			case PON:
 				m_isChiihou = false;
-				// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+				// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 				this.m_kazeFrom = j;
 				this.m_kazeTo = a_kazeFrom;
 				activePlayer = m_players[m_kazeToPlayerIdx[this.m_kazeFrom]];
@@ -960,7 +960,7 @@ public class Mahjong implements Runnable {
 
 				notifyEvent(EventId.SELECT_SUTEHAI, this.m_kazeFrom, this.m_kazeTo);
 
-				// Ì”v‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚éB
+				// ï¿½Ì”vï¿½ÌƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 				iSuteHai = activePlayer.getEventIf().getISutehai();
 				activePlayer.getTehai().copyJyunTehaiIndex(m_suteHai, iSuteHai);
 				activePlayer.getTehai().rmJyunTehai(iSuteHai);
@@ -969,12 +969,12 @@ public class Mahjong implements Runnable {
 				activePlayer.getKawa().setTedashi(true);
 				m_suteHais[m_suteHaisCount++] = new SuteHai(m_suteHai);
 
-				// ƒCƒxƒ“ƒg‚ğ’Ê’m‚·‚éB
+				// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½Ê’mï¿½ï¿½ï¿½ï¿½B
 				ret = notifyEvent(EventId.PON, this.m_kazeFrom, this.m_kazeTo);
 				break NOTIFYLOOP;
 			case CHII_LEFT:
 				m_isChiihou = false;
-				// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+				// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 				this.m_kazeFrom = j;
 				this.m_kazeTo = a_kazeFrom;
 				activePlayer = m_players[m_kazeToPlayerIdx[this.m_kazeFrom]];
@@ -983,7 +983,7 @@ public class Mahjong implements Runnable {
 
 				notifyEvent(EventId.SELECT_SUTEHAI, this.m_kazeFrom, this.m_kazeTo);
 
-				// Ì”v‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚éB
+				// ï¿½Ì”vï¿½ÌƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 				iSuteHai = activePlayer.getEventIf().getISutehai();
 				activePlayer.getTehai().copyJyunTehaiIndex(m_suteHai, iSuteHai);
 				activePlayer.getTehai().rmJyunTehai(iSuteHai);
@@ -992,12 +992,12 @@ public class Mahjong implements Runnable {
 				activePlayer.getKawa().setTedashi(true);
 				m_suteHais[m_suteHaisCount++] = new SuteHai(m_suteHai);
 
-				// ƒCƒxƒ“ƒg‚ğ’Ê’m‚·‚éB
+				// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½Ê’mï¿½ï¿½ï¿½ï¿½B
 				ret = notifyEvent(EventId.CHII_LEFT, this.m_kazeFrom, this.m_kazeTo);
 				break NOTIFYLOOP;
 			case CHII_CENTER:
 				m_isChiihou = false;
-				// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+				// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 				this.m_kazeFrom = j;
 				this.m_kazeTo = a_kazeFrom;
 				activePlayer = m_players[m_kazeToPlayerIdx[this.m_kazeFrom]];
@@ -1006,7 +1006,7 @@ public class Mahjong implements Runnable {
 
 				notifyEvent(EventId.SELECT_SUTEHAI, this.m_kazeFrom, this.m_kazeTo);
 
-				// Ì”v‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚éB
+				// ï¿½Ì”vï¿½ÌƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 				iSuteHai = activePlayer.getEventIf().getISutehai();
 				activePlayer.getTehai().copyJyunTehaiIndex(m_suteHai, iSuteHai);
 				activePlayer.getTehai().rmJyunTehai(iSuteHai);
@@ -1015,12 +1015,12 @@ public class Mahjong implements Runnable {
 				activePlayer.getKawa().setTedashi(true);
 				m_suteHais[m_suteHaisCount++] = new SuteHai(m_suteHai);
 
-				// ƒCƒxƒ“ƒg‚ğ’Ê’m‚·‚éB
+				// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½Ê’mï¿½ï¿½ï¿½ï¿½B
 				ret = notifyEvent(EventId.CHII_CENTER, this.m_kazeFrom, this.m_kazeTo);
 				break NOTIFYLOOP;
 			case CHII_RIGHT:
 				m_isChiihou = false;
-				// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+				// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 				this.m_kazeFrom = j;
 				this.m_kazeTo = a_kazeFrom;
 				activePlayer = m_players[m_kazeToPlayerIdx[this.m_kazeFrom]];
@@ -1029,7 +1029,7 @@ public class Mahjong implements Runnable {
 
 				notifyEvent(EventId.SELECT_SUTEHAI, this.m_kazeFrom, this.m_kazeTo);
 
-				// Ì”v‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚éB
+				// ï¿½Ì”vï¿½ÌƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 				iSuteHai = activePlayer.getEventIf().getISutehai();
 				activePlayer.getTehai().copyJyunTehaiIndex(m_suteHai, iSuteHai);
 				activePlayer.getTehai().rmJyunTehai(iSuteHai);
@@ -1038,28 +1038,28 @@ public class Mahjong implements Runnable {
 				activePlayer.getKawa().setTedashi(true);
 				m_suteHais[m_suteHaisCount++] = new SuteHai(m_suteHai);
 
-				// ƒCƒxƒ“ƒg‚ğ’Ê’m‚·‚éB
+				// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½Ê’mï¿½ï¿½ï¿½ï¿½B
 				ret = notifyEvent(EventId.CHII_RIGHT, this.m_kazeFrom, this.m_kazeTo);
 				break NOTIFYLOOP;
 			case DAIMINKAN:
 				m_isChiihou = false;
-				// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+				// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 				this.m_kazeFrom = j;
 				this.m_kazeTo = a_kazeFrom;
 				activePlayer = m_players[m_kazeToPlayerIdx[this.m_kazeFrom]];
 				activePlayer.getTehai().setDaiMinKan(m_suteHai, getRelation(this.m_kazeFrom, this.m_kazeTo));
 				m_players[m_kazeToPlayerIdx[this.m_kazeTo]].getKawa().setNaki(true);
 
-				// ƒCƒxƒ“ƒg‚ğ’Ê’m‚·‚éB
+				// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½Ê’mï¿½ï¿½ï¿½ï¿½B
 				ret = notifyEvent(EventId.DAIMINKAN, this.m_kazeFrom, this.m_kazeTo);
 
-				// UIƒCƒxƒ“ƒgiis‘Ò‚¿j‚ğ”­s‚·‚éB
+				// UIï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½iï¿½sï¿½Ò‚ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 				m_view.event(EventId.UI_WAIT_PROGRESS, KAZE_NONE, KAZE_NONE);
 
-				// ƒcƒ‚”v‚ğæ“¾‚·‚éB
+				// ï¿½cï¿½ï¿½ï¿½vï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 				m_tsumoHai = m_yama.rinshanTsumo();
 
-				// ƒCƒxƒ“ƒgiƒcƒ‚j‚ğ”­s‚·‚éB
+				// ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½iï¿½cï¿½ï¿½ï¿½jï¿½ğ”­sï¿½ï¿½ï¿½ï¿½B
 				m_isRinshan = true;
 				ret = tsumoEvent();
 				m_isRinshan = false;
@@ -1073,68 +1073,68 @@ public class Mahjong implements Runnable {
 			}
 		}
 
-		// ƒAƒNƒeƒBƒuƒvƒŒƒCƒ„[‚ğİ’è‚·‚éB
+		// ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½İ’è‚·ï¿½ï¿½B
 		activePlayer = m_players[m_kazeToPlayerIdx[a_kazeFrom]];
 
 		return ret;
 	}
 
 	/*
-	 * Info, InfoUI‚É’ñ‹Ÿ‚·‚éAPI‚ğ’è‹`‚·‚éB
+	 * Info, InfoUIï¿½É’ñ‹Ÿ‚ï¿½ï¿½ï¿½APIï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½B
 	 */
 
 	/**
-	 * •\ƒhƒ‰AÈƒhƒ‰‚Ì”z—ñ‚ğæ“¾‚·‚éB
+	 * ï¿½\ï¿½hï¿½ï¿½ï¿½Aï¿½Èƒhï¿½ï¿½ï¿½Ì”zï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 *
-	 * @return •\ƒhƒ‰AÈƒhƒ‰‚Ì”z—ñ
+	 * @return ï¿½\ï¿½hï¿½ï¿½ï¿½Aï¿½Èƒhï¿½ï¿½ï¿½Ì”zï¿½ï¿½
 	 */
 	Hai[] getDoras() {
 		return getYama().getOmoteDoraHais();
 	}
 
 	/**
-	 * •\ƒhƒ‰AÈƒhƒ‰‚Ì”z—ñ‚ğæ“¾‚·‚éB
+	 * ï¿½\ï¿½hï¿½ï¿½ï¿½Aï¿½Èƒhï¿½ï¿½ï¿½Ì”zï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 *
-	 * @return •\ƒhƒ‰AÈƒhƒ‰‚Ì”z—ñ
+	 * @return ï¿½\ï¿½hï¿½ï¿½ï¿½Aï¿½Èƒhï¿½ï¿½ï¿½Ì”zï¿½ï¿½
 	 */
 	Hai[] getUraDoras() {
 		return getYama().getUraDoraHais();
 	}
 
 	/**
-	 * ©•—‚ğæ“¾‚·‚éB
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 */
 	int getJikaze() {
 		return activePlayer.getJikaze();
 	}
 
 	/**
-	 * –{ê‚ğæ“¾‚·‚éB
+	 * ï¿½{ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 *
-	 * @return –{ê
+	 * @return ï¿½{ï¿½ï¿½
 	 */
 	int getHonba() {
 		return m_honba;
 	}
 
 	/**
-	 * ƒŠ[ƒ`‚ğæ“¾‚·‚éB
+	 * ï¿½ï¿½ï¿½[ï¿½`ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 *
 	 * @param kaze
-	 *            •—
-	 * @return ƒŠ[ƒ`
+	 *            ï¿½ï¿½
+	 * @return ï¿½ï¿½ï¿½[ï¿½`
 	 */
 	boolean isReach(int kaze) {
 		return m_players[m_kazeToPlayerIdx[kaze]].isReach();
 	}
 
 	/**
-	 * è”v‚ğƒRƒs[‚·‚éB
+	 * ï¿½ï¿½vï¿½ï¿½ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½B
 	 *
 	 * @param tehai
-	 *            è”v
+	 *            ï¿½ï¿½v
 	 * @param kaze
-	 *            •—
+	 *            ï¿½ï¿½
 	 */
 	void copyTehai(Tehai tehai, int kaze) {
 		if (activePlayer.getJikaze() == kaze) {
@@ -1145,33 +1145,33 @@ public class Mahjong implements Runnable {
 	}
 
 	/**
-	 * è”v‚ğƒRƒs[‚·‚éB
+	 * ï¿½ï¿½vï¿½ï¿½ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½B
 	 *
 	 * @param tehai
-	 *            è”v
+	 *            ï¿½ï¿½v
 	 * @param kaze
-	 *            •—
+	 *            ï¿½ï¿½
 	 */
 	void copyTehaiUi(Tehai tehai, int kaze) {
 		Tehai.copy(tehai, m_players[m_kazeToPlayerIdx[kaze]].getTehai(), true);
 	}
 
 	/**
-	 * ‰Í‚ğƒRƒs[‚·‚éB
+	 * ï¿½Í‚ï¿½ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½B
 	 *
 	 * @param kawa
-	 *            ‰Í
+	 *            ï¿½ï¿½
 	 * @param kaze
-	 *            •—
+	 *            ï¿½ï¿½
 	 */
 	void copyKawa(Hou kawa, int kaze) {
 		Hou.copy(kawa, m_players[m_kazeToPlayerIdx[kaze]].getKawa());
 	}
 
 	/**
-	 * ƒcƒ‚‚Ìc‚è”‚ğæ“¾‚·‚éB
+	 * ï¿½cï¿½ï¿½ï¿½Ìcï¿½è”ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½B
 	 *
-	 * @return ƒcƒ‚‚Ìc‚è”
+	 * @return ï¿½cï¿½ï¿½ï¿½Ìcï¿½è”
 	 */
 	int getTsumoRemain() {
 		return m_yama.getTsumoNokori();
@@ -1255,7 +1255,7 @@ public class Mahjong implements Runnable {
 
 	@Override
 	public void run() {
-		// ƒQ[ƒ€‚ğŠJn‚·‚éB
+		// ï¿½Qï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½nï¿½ï¿½ï¿½ï¿½B
 		play();
 	}
 
